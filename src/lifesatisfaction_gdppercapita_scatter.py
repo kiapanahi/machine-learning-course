@@ -19,9 +19,11 @@ def plot_life_sat_on_gdp():
 
 def create_linear_regression_model():
     lr_model = LinearRegression()
+    
     data = load_data()
     gdp_per_capita = data['GDP per capita']
     life_satisfaction = data['Life satisfaction']
+    
     X = np.c_[gdp_per_capita.values]
     y = np.c_[life_satisfaction.values]
 
@@ -31,6 +33,7 @@ def create_linear_regression_model():
 
     plt.scatter(X, y)
     plt.plot(X, y_predictions)
+    plt.savefig('./out/gdp.per.capita_linear.regression.png')
     plt.show()
 
 
