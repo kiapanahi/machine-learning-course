@@ -6,11 +6,14 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 data = pd.read_csv('./src/calHouse.csv')
 
+
 def investigate_ds():
     print(data.info())
     op_distinct = data['ocean_proximity'].value_counts()
     print("distinct op: {}".format(op_distinct))
     print(data.columns)
+
+
 def transform_enums_to_number():
     # transform enums to numbers (manual)
     data2 = data
@@ -24,7 +27,11 @@ def transform_enums_to_number():
     encoder.fit(data3['ocean_proximity'])
     data3['ocean_proximity'] = encoder.transform(data3['ocean_proximity'])
     print(data3)
+
+
 def plot():
+    lats = data['longitude'].values
+    longs = data['latitude'].values
     plt.scatter(lats, longs,
                 alpha=0.4,
                 c=data['median_house_value'],
@@ -41,8 +48,10 @@ def plot():
     sb.heatmap(correlation)
     plt.show()
 
-lats = data['longitude'].values
-longs = data['latitude'].values
-investigate_ds()
-transform_enums_to_number()
-plot()
+
+def fix_missing_values():
+    pass
+
+
+if __name__ == "__main__":
+    pass
