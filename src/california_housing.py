@@ -29,3 +29,4 @@ plt.show()
 #conflicts with above  plt
 correlation = data.corr()
 sb.heatmap(correlation)
+plt.show()
