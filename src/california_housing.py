@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sb
+from sklearn.preprocessing import LabelEncoder
 
 data = pd.read_csv('./src/calHouse.csv')
 
@@ -14,6 +15,18 @@ print(data.columns)
 lats = data['longitude'].values
 longs = data['latitude'].values
 
+# transform enums to numbers (manual)
+data2 = data
+data2.replace({'<1H OCEAN': 1, 'INLAND': 2, 'NEAR OCEAN': 3,
+               'NEAR BAY': 4, 'ISLAND': 5}, inplace=True)
+print(data2)
+
+# transform enums to number (sscikit learn)
+data3 = data
+encoder = LabelEncoder()
+encoder.fit(data3['ocean_proximity'])
+data3['ocean_proximity'] = encoder.transform(data3['ocean_proximity'])
+print(data3)
 
 plt.scatter(lats, longs,
             alpha=0.4,
@@ -26,7 +39,7 @@ plt.xlabel('Longitude')
 plt.ylabel('Latitude')
 plt.show()
 
-#conflicts with above  plt
+# conflicts with above  plt
 correlation = data.corr()
 sb.heatmap(correlation)
 plt.show()
