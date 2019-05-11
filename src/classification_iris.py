@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.datasets.base import get_data_home
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.model_selection import GridSearchCV
 
 iris = load_iris()
 X = iris['data']
@@ -32,13 +33,19 @@ export_graphviz(dt_classifier,
                 rounded=True)
 
 
-plt.scatter(X[:, 2], X[:, 3], c=Y, cmap=plt.get_cmap('jet'))
-plt.xlabel('Petal length (cm)')
-plt.ylabel('Petal width (cm)')
-x = np.arange(0, 8, 0.1)
-y = np.arange(0, 2.5, 0.05)
-line1 = 2.45*np.ones(len(y))
-line2 = 1.65*np.ones(len(x))
-plt.plot(line1, y)
-plt.plot(x, line2)
-plt.show()
+# plt.scatter(X[:, 2], X[:, 3], c=Y, cmap=plt.get_cmap('jet'))
+# plt.xlabel('Petal length (cm)')
+# plt.ylabel('Petal width (cm)')
+# x = np.arange(0, 8, 0.1)
+# y = np.arange(0, 2.5, 0.05)
+# line1 = 2.45*np.ones(len(y))
+# line2 = 1.65*np.ones(len(x))
+# plt.plot(line1, y)
+# plt.plot(x, line2)
+# plt.show()
+
+attributes = {'max_depth': [2, 4, 6, 8], 'min_samples_leaf': [1, 5, 10]}
+grid_search = GridSearchCV(dt_classifier, attributes, cv=3, scoring='accuracy')
+grid_search.fit(X_tr, Y_tr)
+
+print(grid_search.best_estimator_)
