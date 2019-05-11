@@ -5,8 +5,8 @@ from sklearn.datasets.base import get_data_home
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 
 iris = load_iris()
-X = iris.data
-Y = iris.target
+X = iris['data']
+Y = iris['target']
 
 X_tr, X_test = X[:120, :], X[120:, :]
 Y_tr, Y_test = Y[:120], Y[:120]
@@ -25,9 +25,9 @@ y_predict = dt_classifier.predict(X_test)
 
 export_graphviz(dt_classifier,
                 './out/dt_classifier_export',
-                class_names=iris.target_names,
-                feature_names=iris.feature_names[2:],
+                class_names=iris['target_names'],
+                feature_names=iris['feature_names'][2:],
                 filled=True,
                 rounded=True)
-                
+
 print(y_predict)
