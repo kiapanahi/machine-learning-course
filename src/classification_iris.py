@@ -27,7 +27,18 @@ export_graphviz(dt_classifier,
                 './out/dt_classifier_export',
                 class_names=iris['target_names'],
                 feature_names=iris['feature_names'][2:],
+                max_depth=2,
                 filled=True,
                 rounded=True)
 
-print(y_predict)
+
+plt.scatter(X[:, 2], X[:, 3], c=Y, cmap=plt.get_cmap('jet'))
+plt.xlabel('Petal length (cm)')
+plt.ylabel('Petal width (cm)')
+x = np.arange(0, 8, 0.1)
+y = np.arange(0, 2.5, 0.05)
+line1 = 2.45*np.ones(len(y))
+line2 = 1.65*np.ones(len(x))
+plt.plot(line1, y)
+plt.plot(x, line2)
+plt.show()
