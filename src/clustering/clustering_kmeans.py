@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+from sklearn.metrics import silhouette_score
+
 import veronoi as vr
 
 blob_centers = np.array([
@@ -23,10 +25,12 @@ if __name__ == "__main__":
     for i in range(2, 10):
         kmeans = KMeans(n_clusters=i)
         kmeans.fit(X)
+        silhouette = silhouette_score(X, kmeans.labels_)
+
         print('labels: {}'.format(kmeans.labels_))
         print('inertia: {}'.format(kmeans.inertia_))
         print('centers: {}'.format(kmeans.cluster_centers_))
-        kmeans_inertia.append([i, kmeans.inertia_])
+        kmeans_inertia.append([i, silhouette, kmeans.inertia_])
 
     kmeans_inertia = np.c_[kmeans_inertia]
     print(kmeans_inertia)
