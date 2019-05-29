@@ -1,9 +1,10 @@
-def silhouette_diag(k,kmeans, X):
-    from sklearn.metrics import silhouette_samples, silhouette_score
-    from matplotlib.ticker import FixedLocator, FixedFormatter
-    import matplotlib as mpl
-    
-    
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from matplotlib.ticker import FixedFormatter, FixedLocator
+from sklearn.metrics import silhouette_samples, silhouette_score
+
+
+def silhouette_diag(k, kmeans, X):
 
     y_pred = kmeans.labels_
     silhouette_coefficients = silhouette_samples(X, y_pred)
@@ -25,7 +26,7 @@ def silhouette_diag(k,kmeans, X):
     plt.ylabel("Cluster")
     plt.gca().set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
     plt.xlabel("Silhouette Coefficient")
-    silhouette_score = silhouette_score(X,kmeans.labels_)
+    silhouette_score = silhouette_score(X, kmeans.labels_)
     plt.axvline(x=silhouette_score, color="red", linestyle="--")
     plt.title("$k={}$".format(k), fontsize=16)
     plt.show()
