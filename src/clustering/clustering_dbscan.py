@@ -13,11 +13,13 @@ non_outliers = X[dbscan.labels_ > -1]
 
 plt.scatter(non_outliers[:, 0],
             non_outliers[:, 1],
-            c=dbscan.labels_[dbscan.labels_ > -1])
+            c=dbscan.labels_[dbscan.labels_ > -1],
+            alpha=.6)
 
 plt.scatter(outliers[:, 0],
             outliers[:, 1],
-            marker='X',
+            marker='x',
+            
             s=50,
-            c='k')
+            c='k',)
 plt.show()
