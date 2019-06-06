@@ -19,7 +19,6 @@ plt.scatter(non_outliers[:, 0],
 plt.scatter(outliers[:, 0],
             outliers[:, 1],
             marker='x',
-            
             s=50,
             c='k',)
 plt.show()
