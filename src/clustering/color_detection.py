@@ -2,7 +2,7 @@ from matplotlib.image import imread
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 
-fig = imread('./src/clustering/ladybug.png')
+fig = imread('./data/ladybug.png')
 
 print(fig.shape)
 X = fig.reshape(-1, 3)
