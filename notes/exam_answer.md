@@ -25,3 +25,18 @@ Based on unlabeled data. These algorithms are mostly used in clustering tasks an
 #### Reinforced:
 
 Based on giving *reward/penalty* to an **agent**. i.e. ...
+
+---
+
+### Question 2
+
+#### Scaling the data
+
+...
+
+#### Handling missing values
+
+...
+
+---
+
